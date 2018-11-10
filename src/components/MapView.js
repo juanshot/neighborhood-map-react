@@ -6,6 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import MapComponent from './MapComponent'
+
 const styles = {
   root: {
     flexGrow: 1,
@@ -30,6 +32,14 @@ function MapView(props) {
           </IconButton>
         </Toolbar>
       </AppBar>
+      <MapComponent
+        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key"
+        loadingElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `400px` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
+      >
+
+      </MapComponent>
     </div>
   );
 }
