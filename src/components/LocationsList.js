@@ -107,14 +107,16 @@ class NestedList extends React.Component {
           component="nav"
         >
           <Divider></Divider>
-          <ListItem className={classes.locationItem} button>
-            <ListItemIcon>
-              <PlaceIcon style={{color: 'blue'}} />
-            </ListItemIcon>
-            <ListItemText
-                primary={<Typography type="body2" style={{ color: '#FFFFFF', fontSize: '1.2em', textTransform: 'uppercase' }}>MyTitle</Typography>}
-            />
-          </ListItem>
+          {this.props.places.map(place => (
+            <ListItem className={classes.locationItem} button>
+              <ListItemIcon>
+                <PlaceIcon style={{color: 'blue'}} />
+              </ListItemIcon>
+              <ListItemText
+                  primary={<Typography type="body2" style={{ color: '#FFFFFF', fontSize: '1.2em', textTransform: 'uppercase' }}>{place.name}</Typography>}
+              />
+            </ListItem>
+          ))}
         </List>
       </div>
     );
@@ -123,6 +125,7 @@ class NestedList extends React.Component {
 
 NestedList.propTypes = {
   classes: PropTypes.object.isRequired,
+  places: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(NestedList);

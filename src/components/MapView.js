@@ -35,8 +35,9 @@ function MapView(props) {
       <MapComponent
         googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyB8LnEaWIQrrSSiMs51uSDLrCD9gyxUp_U"
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `400px` }} />}
+        containerElement={<div style={{ height: `100vh` }} />}
         mapElement={<div style={{ height: `100%` }} />}
+        places={props.places}
       >
 
       </MapComponent>
@@ -46,6 +47,7 @@ function MapView(props) {
 
 MapView.propTypes = {
   classes: PropTypes.object.isRequired,
+  places: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(MapView);
