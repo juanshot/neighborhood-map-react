@@ -105,10 +105,21 @@ class PlacesList extends React.Component {
           component="nav"
         >
           <Divider></Divider>
-          {this.props.places.map(place => (
-            <ListItem key={place.id} className={classes.locationItem} button>
+          {this.props.places.sort((prev, next) => prev.id - next.id).map(place => (
+            <ListItem
+              onClick={() => {
+                if (!place.showInfo){
+                  this.props.onOpenMarker(place)
+                } else {
+                  this.props.onCloseMarker(place)
+                }
+              }}
+              key={place.id}
+              className={classes.locationItem}
+              button
+            >
               <ListItemIcon>
-                <PlaceIcon style={{color: 'blue'}} />
+                <PlaceIcon style={{color: place.showInfo ? 'blue': 'red'}} />
               </ListItemIcon>
               <ListItemText
                   primary={<Typography type="body2" style={{ color: '#FFFFFF', fontSize: '1.2em', textTransform: 'uppercase' }}>{place.name}</Typography>}
@@ -124,7 +135,9 @@ class PlacesList extends React.Component {
 PlacesList.propTypes = {
   classes: PropTypes.object.isRequired,
   places: PropTypes.array.isRequired,
-  setFilterValue: PropTypes.func.isRequired
+  setFilterValue: PropTypes.func.isRequired,
+  onOpenMarker: PropTypes.func.isRequired,
+  onCloseMarker: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(PlacesList);

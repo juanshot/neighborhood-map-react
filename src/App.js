@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
@@ -37,7 +36,6 @@ class App extends Component {
         places
       })
     }
-    // showingPlaces.sort(sortBy('name'))
   }
   classes = this.props.classes
   render () {
@@ -45,10 +43,40 @@ class App extends Component {
       <div className={this.props.classes.root}>
         <Grid container spacing={0}>
           <Grid item xs={3}>
-            <LocationsList setFilterValue={this.filterPlaces} places={this.state.places}></LocationsList>
+            <LocationsList
+              setFilterValue={this.filterPlaces}
+              places={this.state.places}
+              onOpenMarker={(openPlace) => {
+                openPlace.showInfo = true
+                this.setState((state) => ({
+                  places: state.places.filter((place) => place.id !== openPlace.id).concat(openPlace)
+                }))
+              }}
+              onCloseMarker={(closePlace) => {
+                closePlace.showInfo = false
+                this.setState((state) => ({
+                  places: state.places.filter((place) => place.id !== closePlace.id).concat(closePlace)
+                }))
+              }}
+              >
+            </LocationsList>
           </Grid>
           <Grid item xs={9}>
-              <MapView places={this.state.places}></MapView>
+              <MapView
+                onOpenMarker={(openPlace) => {
+                  openPlace.showInfo = true
+                  this.setState((state) => ({
+                    places: state.places.filter((place) => place.id !== openPlace.id).concat(openPlace)
+                  }))
+                }}
+                onCloseMarker={(closePlace) => {
+                  closePlace.showInfo = false
+                  this.setState((state) => ({
+                    places: state.places.filter((place) => place.id !== closePlace.id).concat(closePlace)
+                  }))
+                }}
+                places={this.state.places}>
+              </MapView>
           </Grid>
         </Grid>
       </div>

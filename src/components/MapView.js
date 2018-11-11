@@ -39,6 +39,8 @@ class MapView extends Component{
           containerElement={<div style={{ height: `100vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
           places={this.props.places}
+          onOpenMarker={this.props.onOpenMarker}
+          onCloseMarker={this.props.onCloseMarker}
         >
 
         </MapComponent>
@@ -49,7 +51,9 @@ class MapView extends Component{
 
 MapView.propTypes = {
   classes: PropTypes.object.isRequired,
-  places: PropTypes.array.isRequired
+  places: PropTypes.array.isRequired,
+  onOpenMarker: PropTypes.func.isRequired,
+  onCloseMarker: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(MapView);
