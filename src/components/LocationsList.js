@@ -75,18 +75,15 @@ const styles = theme => ({
   },
 });
 
-class NestedList extends React.Component {
-  state = {
-    open: true,
-  };
-
+class PlacesList extends React.Component {
   handleClick = () => {
     this.setState(state => ({ open: !state.open }));
-  };
-
+  }
+  emmitQuery = (event) => {
+    this.props.setFilterValue(event.target.value)
+  }
   render() {
     const { classes } = this.props;
-
     return (
       <div className={classes.root}>
         <AppBar className={classes.topBar} position="static">
@@ -98,6 +95,7 @@ class NestedList extends React.Component {
         </AppBar>
         <InputBase
             placeholder="Search…"
+            onChange={this.emmitQuery}
             classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -108,7 +106,7 @@ class NestedList extends React.Component {
         >
           <Divider></Divider>
           {this.props.places.map(place => (
-            <ListItem className={classes.locationItem} button>
+            <ListItem key={place.id} className={classes.locationItem} button>
               <ListItemIcon>
                 <PlaceIcon style={{color: 'blue'}} />
               </ListItemIcon>
@@ -123,9 +121,10 @@ class NestedList extends React.Component {
   }
 }
 
-NestedList.propTypes = {
+PlacesList.propTypes = {
   classes: PropTypes.object.isRequired,
-  places: PropTypes.array.isRequired
+  places: PropTypes.array.isRequired,
+  setFilterValue: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(NestedList);
+export default withStyles(styles)(PlacesList);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -21,28 +21,30 @@ const styles = {
   },
 };
 
-function MapView(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar color="default" position="static">
-        <Toolbar>
-          <IconButton className={classes.menuButton} color="default" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <MapComponent
-        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyB8LnEaWIQrrSSiMs51uSDLrCD9gyxUp_U"
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `100vh` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-        places={props.places}
-      >
+class MapView extends Component{
+  render () {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <AppBar color="default" position="static">
+          <Toolbar>
+            <IconButton className={classes.menuButton} color="default" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <MapComponent
+          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyB8LnEaWIQrrSSiMs51uSDLrCD9gyxUp_U"
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `100vh` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+          places={this.props.places}
+        >
 
-      </MapComponent>
-    </div>
-  );
+        </MapComponent>
+      </div>
+    );
+  }
 }
 
 MapView.propTypes = {

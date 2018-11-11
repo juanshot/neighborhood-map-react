@@ -5,10 +5,12 @@
   "dependencies": {
     "@material-ui/core": "^3.4.0",
     "@material-ui/icons": "^3.0.1",
+    "escape-regex-string": "^1.0.6",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-google-maps": "^9.4.5",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "sort-by": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
