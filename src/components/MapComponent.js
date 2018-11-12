@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import PlaceInfo from './PlaceInfo'
 import {
     withScriptjs,
     withGoogleMap,
@@ -29,7 +30,10 @@ const MapComponent = compose(
                 {place.showInfo && <InfoWindow onCloseClick={() => {
                     props.onCloseMarker(place)
                 }}>
-                    <div>{place.name}</div>
+                    <div>
+                        {place.name}
+                        <PlaceInfo placeName={place.name}></PlaceInfo>
+                    </div>
                 </InfoWindow>}
               </Marker>
           ))}
