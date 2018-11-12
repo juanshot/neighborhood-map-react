@@ -4,18 +4,20 @@ import PropTypes from 'prop-types'
 class PlaceInfo extends Component {
     state = {
         info: '',
-        url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBM8pLrHOpH9cd8WfNvly0GfSp2BkxEYl4'
+        url: 'https://en.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json'
     }
     componentDidMount () {
-        let params = new URLSearchParams()
-        params.append('address', this.props.placeName)
-        console.log('component has been mounted', params)
-        fetch(`${this.state.url}&address=${encodeURIComponent(this.props.placeName)}`).then(response => {
+        let headers = new Headers({
+            'Content-type': 'application/json'
+        })
+        console.log('component has been mounted')
+        fetch(`${this.state.url}&origin=*&utf8=&srsearch=${this.props.placeName}`, { headers }).then(response => {
             return response.json()
         }).then(responseJson => {
             console.log('formated res', responseJson)
+        }).catch(err => {
+            console.log('error', err)
         })
-
     }
     render () {
         return (<div>Info</div>)
