@@ -16,13 +16,14 @@ const MapComponent = compose(
 )((props) => {
     return (
       <GoogleMap
-          defaultZoom={15}
+          defaultZoom={16}
           defaultCenter={{ lat: -2.900839, lng: -79.005317 }}
           >
           {props.places.length > 0 && props.places.map(place => (
               <Marker
                 key={place.id}
                 position={{ lat: place.lat, lng: place.lng }}
+                icon={place.showInfo ? `${props.iconBase}blue-dot.png`: `${props.iconBase}red-dot.png`}
                 onClick={() => {
                     props.onOpenMarker(place)
                 }}
@@ -42,9 +43,10 @@ const MapComponent = compose(
     );
   })
 MapComponent.propTypes = {
-  places: PropTypes.array.isRequired,
-  onOpenMarker: PropTypes.func.isRequired,
-  onCloseMarker: PropTypes.func.isRequired
+  places: PropTypes.array.isRequired, // places from global state
+  onOpenMarker: PropTypes.func.isRequired, // function that changes the state to showInfo to true
+  onCloseMarker: PropTypes.func.isRequired, // function that changes the state to showInfo to false
+  iconBase: PropTypes.string.isRequired // url to get the marker icon
 }
 
 export default MapComponent;
