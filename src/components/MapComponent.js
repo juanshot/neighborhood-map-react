@@ -16,6 +16,8 @@ const MapComponent = compose(
 )((props) => {
     return (
       <GoogleMap
+          role="application"
+          tabIndex='-1'
           defaultZoom={16}
           defaultCenter={{ lat: -2.900839, lng: -79.005317 }}
           >

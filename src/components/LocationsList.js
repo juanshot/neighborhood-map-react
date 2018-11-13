@@ -97,6 +97,8 @@ class PlacesList extends React.Component {
         </AppBar>
         <InputBase
             tabIndex="0"
+            role="form"
+            aria-labelledby="filter"
             placeholder="Search Place…"
             onChange={this.emmitQuery}
             classes={{
@@ -127,6 +129,8 @@ class PlacesList extends React.Component {
                 <PlaceIcon style={{color: place.showInfo ? 'blue': 'red'}} />
               </ListItemIcon>
               <ListItemText
+                  role="button"
+                  tabIndex="0"
                   primary={<Typography type="display2" style={{ color: '#FFFFFF', fontSize: '1.2em', textTransform: 'uppercase' }}>{place.name}</Typography>}
               />
             </ListItem>
