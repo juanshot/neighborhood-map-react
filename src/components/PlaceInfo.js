@@ -15,7 +15,6 @@ class PlaceInfo extends Component {
             return response.json()
         }).then(responseJson => {
             this.setState({info: responseJson.query.search})
-            console.log('formated res', responseJson)
         }).catch(err => {
             console.log('error', err)
         })
