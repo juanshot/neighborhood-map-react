@@ -3,24 +3,31 @@ import PropTypes from 'prop-types'
 
 class PlaceInfo extends Component {
     state = {
-        info: '',
+        info: [],
         url: 'https://en.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json'
     }
     componentDidMount () {
         let headers = new Headers({
             'Content-type': 'application/json'
         })
-        console.log('component has been mounted')
         fetch(`${this.state.url}&origin=*&utf8=&srsearch=${this.props.placeName}`, { headers }).then(response => {
             return response.json()
         }).then(responseJson => {
+            this.setState({info: responseJson.query.search})
             console.log('formated res', responseJson)
         }).catch(err => {
             console.log('error', err)
         })
     }
     render () {
-        return (<div>Info</div>)
+        return (
+        <div>
+            <span>Info by Wikipedia:</span>
+            <ul>
+            {this.state.info.map(info => (<li key={info.title} className="content" dangerouslySetInnerHTML={{__html: info.snippet}}></li>))}
+            </ul>
+        </div>
+        )
     }
 }
 PlaceInfo.propTypes = {

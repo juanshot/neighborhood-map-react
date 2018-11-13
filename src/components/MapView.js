@@ -36,7 +36,7 @@ class MapView extends Component{
         <MapComponent
           googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyBM8pLrHOpH9cd8WfNvly0GfSp2BkxEYl4"
           loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `100vh` }} />}
+          containerElement={<div style={{ height: `92vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
           places={this.props.places}
           onOpenMarker={this.props.onOpenMarker}

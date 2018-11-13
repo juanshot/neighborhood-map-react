@@ -16,7 +16,7 @@ const MapComponent = compose(
 )((props) => {
     return (
       <GoogleMap
-          defaultZoom={16}
+          defaultZoom={15}
           defaultCenter={{ lat: -2.900839, lng: -79.005317 }}
           >
           {props.places.length > 0 && props.places.map(place => (
