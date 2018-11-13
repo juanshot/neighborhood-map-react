@@ -6,6 +6,7 @@ class PlaceInfo extends Component {
         info: [],
         url: 'https://en.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json'
     }
+    // Getting Wikipedia info after mounting component
     componentDidMount () {
         let headers = new Headers({
             'Content-type': 'application/json'
@@ -31,6 +32,6 @@ class PlaceInfo extends Component {
     }
 }
 PlaceInfo.propTypes = {
-    placeName: PropTypes.string.isRequired
+    placeName: PropTypes.string.isRequired // place name received by MapComponent
 }
 export default PlaceInfo

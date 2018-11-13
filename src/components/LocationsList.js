@@ -17,8 +17,6 @@ import Divider from '@material-ui/core/Divider';
 const styles = theme => ({
   root: {
     width: '100%',
-    backgroundColor: '#1f1d1d',
-    height: '100vh',
     color: 'white'
   },
   nested: {
@@ -56,23 +54,27 @@ const styles = theme => ({
   inputRoot: {
     color: 'inherit',
     width: '100%',
-    fontSize: '1.2em'
+    fontSize: '1.5em',
+    border: 'border: 1px solid white'
   },
   inputInput: {
-    paddingTop: theme.spacing.unit,
+    paddingTop: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
-    paddingLeft: theme.spacing.unit * 10,
+    paddingLeft: theme.spacing.unit * 5,
     transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: 200,
-    },
+    border: 'groove'
   },
   locationsList: {
     backgroundColor: '#1f1d1d',
     color: 'inherit'
   },
+  listIcon: {
+    [theme.breakpoints.down('md')]: {
+      display: 'none'
+    }
+  }
 });
 
 class PlacesList extends React.Component {
@@ -94,7 +96,8 @@ class PlacesList extends React.Component {
           </Toolbar>
         </AppBar>
         <InputBase
-            placeholder="Search…"
+            tabIndex="0"
+            placeholder="Search Place…"
             onChange={this.emmitQuery}
             classes={{
                 root: classes.inputRoot,
@@ -118,11 +121,13 @@ class PlacesList extends React.Component {
               className={classes.locationItem}
               button
             >
-              <ListItemIcon>
+              <ListItemIcon
+                className={classes.listIcon}
+              >
                 <PlaceIcon style={{color: place.showInfo ? 'blue': 'red'}} />
               </ListItemIcon>
               <ListItemText
-                  primary={<Typography type="body2" style={{ color: '#FFFFFF', fontSize: '1.2em', textTransform: 'uppercase' }}>{place.name}</Typography>}
+                  primary={<Typography type="display2" style={{ color: '#FFFFFF', fontSize: '1.2em', textTransform: 'uppercase' }}>{place.name}</Typography>}
               />
             </ListItem>
           ))}
@@ -133,11 +138,11 @@ class PlacesList extends React.Component {
 }
 
 PlacesList.propTypes = {
-  classes: PropTypes.object.isRequired,
-  places: PropTypes.array.isRequired,
-  setFilterValue: PropTypes.func.isRequired,
-  onOpenMarker: PropTypes.func.isRequired,
-  onCloseMarker: PropTypes.func.isRequired
+  classes: PropTypes.object.isRequired, // classes from styles variable
+  places: PropTypes.array.isRequired, // places from global state
+  setFilterValue: PropTypes.func.isRequired, // function that sends input search value
+  onOpenMarker: PropTypes.func.isRequired, // function that changes the state to showInfo to true
+  onCloseMarker: PropTypes.func.isRequired // function that changes the state to showInfo to false
 };
 
 export default withStyles(styles)(PlacesList);
