@@ -39,7 +39,7 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       width: drawerWidth / 2,
       fontSize: '0.8em',
     },
