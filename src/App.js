@@ -10,7 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Hidden from '@material-ui/core/Hidden';
 import MapView from './components/MapView'
 import LocationsList from './components/LocationsList'
-import places from './data/places'
+import places from './placesData/places'
 
 const drawerWidth = 400;
 
